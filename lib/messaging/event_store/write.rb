@@ -10,6 +10,16 @@ module Messaging
           attr_name: :event_writer
         )
       end
+
+      module Assertions
+        def self.extended(write)
+          write.event_writer.extend EventSource::EventStore::HTTP::Write::Assertions
+        end
+
+        def session?(session)
+          event_writer.session? session
+        end
+      end
     end
   end
 end
