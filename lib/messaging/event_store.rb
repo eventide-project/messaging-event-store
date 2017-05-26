@@ -1,4 +1,4 @@
-require 'event_source/event_store/http'
+require 'message_store/event_store'
 require 'messaging'
 
 require 'messaging/event_store/log'

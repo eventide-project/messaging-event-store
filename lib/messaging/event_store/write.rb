@@ -4,20 +4,20 @@ module Messaging
       include Messaging::Write
 
       def configure(session: nil)
-        EventSource::EventStore::HTTP::Write.configure(
+        MessageStore::EventStore::Write.configure(
           self,
           session: session,
-          attr_name: :event_writer
+          attr_name: :message_writer
         )
       end
 
       module Assertions
         def self.extended(write)
-          write.event_writer.extend EventSource::EventStore::HTTP::Write::Assertions
+          write.message_writer.extend(MessageStore::EventStore::Write::Assertions)
         end
 
         def session?(session)
-          event_writer.session? session
+          message_writer.session?(session)
         end
       end
     end
