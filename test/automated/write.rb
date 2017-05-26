@@ -7,9 +7,9 @@ context "Write" do
 
   position = Messaging::EventStore::Write.(message, stream_name)
 
-  read_event = MessageStore::EventStore::Get::Last.(stream_name)
+  read_message = MessageStore::EventStore::Get::Last.(stream_name)
 
   test "Writes the message" do
-    assert read_event.data == message.to_h
+    assert read_message.data == message.to_h
   end
 end
